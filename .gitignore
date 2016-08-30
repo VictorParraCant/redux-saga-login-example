@@ -1,0 +1,9 @@
+# OSX
+#
+.DS_Store
+
+# JS
+#
+node_modules/
+public/bundles/
+npm-debug.log
