@@ -4,6 +4,13 @@
 
 This application demonstrates what a React-based register/login workflow might look like with [Redux Saga](https://github.com/yelouafi/redux-saga).
 
+
+## In progress ...
+- [x] Add redux-saga
+- [ ] Add react-router-redux
+- [ ] Add immutable
+- [ ] Add Mysql and Sequelize
+
 ## Stack
 
 - React

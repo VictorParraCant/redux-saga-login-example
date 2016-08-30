@@ -1,12 +1,22 @@
 {
   "name": "redux-saga-login-example",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Login example build with redux-saga and redux.",
   "main": "server/index.js",
   "author": "Pedro J. Parra <pedroparra.correo@gmail.com>",
   "engines": {
+    "node": ">=6.2.0",
     "npm": ">=3"
   },
+  "keywords": [
+    "sagas",
+    "redux",
+    "redux-saga",
+    "react-redux",
+    "immutable",
+    "example",
+    "login"
+  ],
   "dependencies": {
     "axios": "^0.13.1",
     "body-parser": "^1.15.2",
