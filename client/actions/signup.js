@@ -1,5 +1,4 @@
 export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
-export const SIGNUP_SUCCEEDED = "SIGNUP_SUCCESS";
 export const SIGNUP_FAILED = "SIGNUP_FAILED";
 export const INPUTCHANGE = "INPUTCHANGE";
 

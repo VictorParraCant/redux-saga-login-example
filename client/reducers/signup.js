@@ -1,6 +1,5 @@
 import {
     SIGNUP_REQUEST,
-    SIGNUP_SUCCEEDED,
     SIGNUP_FAILED,
     INPUTCHANGE
 } from "actions/signup";
@@ -18,9 +17,6 @@ export default (state=initialState, action={}) => {
 
         case SIGNUP_REQUEST:
             return { ...state, isFetching: true, errors: {} };
-
-        case SIGNUP_SUCCEEDED:
-            return { ...state, isFetching: false, user: action.user };
 
         case SIGNUP_FAILED:
             return {

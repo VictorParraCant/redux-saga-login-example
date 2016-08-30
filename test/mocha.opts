@@ -1,0 +1,8 @@
+--recursive
+--timeout 6000
+--colors
+--ui bdd
+--watch
+--reporter spec
+--require test/bootstrap.js
+--compilers js:babel-register
