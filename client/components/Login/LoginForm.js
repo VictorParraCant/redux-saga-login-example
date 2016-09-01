@@ -7,118 +7,47 @@ class LoginForm extends Component {
     static propTypes = {
         processing: PT.bool, // send request?
         errors: PT.object,
-        login: PT.func
+        email: PT.string,
+        password: PT.string,
+        pause: PT.bool,
+        login: PT.func,
+        onChangeHandle: PT.func
     }
 
     static defaultProps = {
         processing: false,
         errors: {},
-        login: () => {}
+        email: "",
+        password: "",
+        pause: true,
+        login: () => {},
+        onChangeHandle: () => {}
     }
 
     constructor(props) {
         super(props);
-        this.state = {
-            email: "",
-            password: "",
-            errors: this.props.errors,
-            pause: false // error validation or send request
-        };
-    }
-
-    // Disparar una método que me permita cambiar el estado
-    // de los errores después del que el sagas traiga nuevos props.
-    componentWillReceiveProps(next_props){
-        let newErrors = next_props.errors;
-        if (newErrors){
-            this.setState({
-                errors: {
-                    ...newErrors,
-                    ...this.props.errors
-                },
-                pause: true
-            });
-        } else {
-            this.setState({ errors: this.props.errors });
-        }
     }
 
     onChangeHandle(e) {
-        let newErrors = { ...this.state.errors, [e.target.name]: null };
-        this.setState({
-            [e.target.name]: e.target.value,
-            errors: newErrors
-        });
-        this.pausate(newErrors);
-    }
-
-    pausate(errors) {
-        if( !errors.email && !errors.password ){
-            this.setState({ pause: false });
-        }
-    }
-
-    validate() {
-
-        let newErrors = {};
-        let hasErrors = false;
-        let { email, password } = this.state;
-
-        // Validate email
-        if (!email || email.length < 2) {
-            newErrors.email = "Min 2 chars";
-            hasErrors = true;
-        } else {
-            // Si ya teniamos un fallo del server,
-            // evitamos ponerlo en null
-            newErrors.email = this.state.errors.email || null;
-        }
-
-        // Validate password
-        if (!password || password.length < 2) {
-            newErrors.password = "Min 2 chars";
-            hasErrors = true;
-        } else {
-            newErrors.password = this.state.errors.password || null;
-        }
-
-        if ( hasErrors ) {
-            this.setState({
-                errors: newErrors,
-                pause: true
-            });
-        } else {
-            return true;
-        }
-
+        this.props.onChangeHandle({ [e.target.name]: e.target.value });
     }
 
     submit(e) {
         e.preventDefault();
-        if (!this.validate()) {
-            return;
-        } else {
-            // Llamada a la accion de login
-            // que traera nuevas props.
-            this.props.login(this.state);
-        }
+        this.props.login({ email: this.props.email, password: this.props.password });
     }
 
     render() {
 
-        const { processing } = this.props;
-        const {
-            email,
-            password,
-            errors,
-            pause
-        } = this.state;
+        const { processing, errors, email, password, pause } = this.props;
+        const error_email = ( errors.email === "" ) ? null : errors.email;
+        const error_password = ( errors.password === "" ) ? null : errors.password;
 
         return (
             <form>
                 <h2>Login</h2>
                 <hr />
-                <FormGroup label="Email" errorText={errors.email}>
+                <FormGroup label="Email" errorText={error_email}>
                     <input
                         className="form-control"
                         name="email"
@@ -128,7 +57,7 @@ class LoginForm extends Component {
                         />
                 </FormGroup>
 
-                <FormGroup label="Password" errorText={errors.password}>
+                <FormGroup label="Password" errorText={error_password}>
                     <input
                         className="form-control"
                         name="password"

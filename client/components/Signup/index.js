@@ -2,6 +2,7 @@ import React, {Component, PropTypes as PT} from "react";
 import { connect } from "react-redux";
 import SignupForm from "components/Signup/SignupForm";
 import * as actions from "actions/signup";
+import { Link } from "react-router";
 
 const Signup = ({ signupRequest, inputChange, isFetching, email, password, errors, pause }) => {
     return (
@@ -14,6 +15,8 @@ const Signup = ({ signupRequest, inputChange, isFetching, email, password, error
                 errors={errors}
                 signup={ (signupData) => signupRequest(signupData) }
                 onChangeHandle={ (change) => inputChange(change) } />
+            <br/>
+            <p>Already have an account? <Link to={"/login"}>Login</Link></p>
         </div>
     );
 };

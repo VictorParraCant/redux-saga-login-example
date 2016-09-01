@@ -1,37 +1,29 @@
-// Express imports
 const express = require("express");
+const User = require("../models/user");
+const bcrypt = require("bcryptjs");
 
 let router = express.Router();
-
-const validateBody = data => {
-
-    let errors = {};
-
-    // Simulate database query
-    if( data.email !== "admin" ) { errors.email = "Incorrect Email"; }
-    if( data.password !== "1234" ) { errors.password = "Incorrect Password"; }
-
-    // Simple test validations
-    if( !data.email || data.email.length < 2 ){ errors.email = "Email is required!"; }
-    if( !data.password || data.password.length < 2 ){ errors.password = "Password is required!"; }
-
-    return {
-        errors: {"errors": errors},
-        isValid: ( errors.email || errors.password) ? false : true
-    };
-};
+const signupValidation = require("../validations/signup");
 
 router.post("/", (req, res) => {
     // Validations
-    const { errors, isValid } = validateBody(req.body);
-    if(!isValid){ res.status(200).json(errors); }
-    else{
-        res.status(200).json({
+    const { errors, isValid } = signupValidation(req.body);
+    if(isValid){
+        const { email, password } = req.body;
+        const password_digest = bcrypt.hashSync(password, 10);
+
+        // Guardamos los datos.
+        User.forge({email, password_digest}, { hasTimestamps: true })
+        .save()
+        .then(user => res.status(200).json({
             user: {
                 "name": "admin",
-                "email": req.body.email,
+                "email": email
             }
-        });
+        }))
+        .catch(err => res.status(500));
+    } else {
+        res.status(200).json(errors);
     }
 
 });

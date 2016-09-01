@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const NavigationBar = ({ email }) => {
 
-    const menus = ( email ) ?
+    const menus = ( email && email !== "" ) ?
         <li>
             <Link to={"/signout"} activeStyle={{color: "white"}}>Logout</Link>
         </li>
@@ -31,7 +31,7 @@ const NavigationBar = ({ email }) => {
 };
 
 NavigationBar.propTypes = {
-    email: PT.object
+    email: PT.string
 };
 
 const mapStateToProps = ({ user }) => ({

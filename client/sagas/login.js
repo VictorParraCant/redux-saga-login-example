@@ -8,7 +8,7 @@ import * as userActions from "actions/user";
 
 function* login_process(action) {
     try {
-        yield delay(2000); // simulate long db query
+        yield delay(1000); // simulate long db query
         // Llamada a la api
         const payload = yield call(
             postLoginToAPI,
@@ -30,7 +30,6 @@ function* login_process(action) {
 
 
     } catch (e) {
-        // Fallo del server, abría que avisar al usuario
         console.log("login error", e);
         yield put(
             addFlashMessage({

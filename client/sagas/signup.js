@@ -3,12 +3,12 @@ import { call, put, select } from "redux-saga/effects";
 import axios from "axios";
 
 import { addFlashMessage } from "actions/flashMessages";
-import * as actions from "actions/signup";
+import * as signupActions from "actions/signup";
+import * as userActions from "actions/user";
 
 function* signup_process(action) {
     try {
         yield delay(1000); // simulate long db query
-
         // Llamada a la api
         const payload = yield call(
             postSignupToAPI,
@@ -17,17 +17,16 @@ function* signup_process(action) {
 
         // Hay errores
         if(payload.data.errors){
-            yield put(actions.signupFailed(payload.data.errors));
+            yield put(signupActions.signupFailed(payload.data.errors));
         }
 
         // Pasamos los datos del usuario
         if(payload.data.user){
-            // yield put(actions.signupSucceeded(payload.data.user));
+            yield put(userActions.userLogin(payload.data.user));
             // REDIRECT??
         }
 
     } catch (e) {
-        // Fallo del server, abría que avisar al usuario
         yield put(
             addFlashMessage({
                 "type": "error",
@@ -52,5 +51,5 @@ const postSignupToAPI = data => {
 };
 
 export function* watchSignupRequest() {
-    yield* takeEvery( actions.SIGNUP_REQUEST, signup_process );
+    yield* takeEvery( signupActions.SIGNUP_REQUEST, signup_process );
 }

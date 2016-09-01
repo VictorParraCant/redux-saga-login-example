@@ -20,7 +20,8 @@ export default (state=initialState, action={}) => {
 
         case SIGNUP_FAILED:
             return {
-                ...state, isFetching: false,
+                ...state,
+                isFetching: false,
                 errors: action.errors,
                 pause: true
             };
