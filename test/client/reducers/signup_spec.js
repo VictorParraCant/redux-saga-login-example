@@ -1,5 +1,5 @@
-import * as action from "actions/login";
-import login from "reducers/login";
+import * as action from "actions/signup";
+import signup from "reducers/signup";
 
 const initialState = {
     "email": "",
@@ -9,15 +9,15 @@ const initialState = {
     "pause": false
 };
 
-describe("Test Login Reducer", () => {
+describe("Test Signup Reducer", () => {
 
     it("Initial state", () => {
-        expect(login(undefined, {})).to.deep.equal(initialState);
+        expect(signup(undefined, {})).to.deep.equal(initialState);
     });
 
-    xit("Handle LOGIN_REQUEST action", () => {
+    xit("Handle SIGNUP_REQUEST action", () => {
         const prevState = initialState;
-        const newState = login ( prevState , action.LOGIN_REQUEST );
+        const newState = login ( prevState , action.SIGNUP_REQUEST );
         const expecState = {
             "email": "",
             "errors": {},
@@ -28,9 +28,9 @@ describe("Test Login Reducer", () => {
         expect(newState).to.deep.equal(expecState);
     });
 
-    xit("Handle LOGIN_FAILED action", () => {
+    xit("Handle SIGNUP_FAILED action", () => {
         const prevState = initialState;
-        const newState = login ( prevState , action.LOGIN_FAILED );
+        const newState = login ( prevState , action.SIGNUP_FAILED );
     });
 
 });
