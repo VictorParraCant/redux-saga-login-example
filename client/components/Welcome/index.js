@@ -1,17 +1,13 @@
 import React, {Component, PropTypes as PT} from "react";
+import { Link } from "react-router";
 
-const Welcome = ({}) => {
+const Welcome = () => {
     return (
-        <div>
-            Welcome
+        <div className="jumbotron">
+            <h2>Welcome</h2>
+            <Link to={"/signup"}>Sign Up</Link> or <Link to={"/login"}>Login</Link>
         </div>
     );
-};
-
-Welcome.propTypes = {
-};
-
-Welcome.defaultProps = {
 };
 
 export default Welcome;
