@@ -1,7 +1,7 @@
 import {
     SIGNUP_REQUEST,
     SIGNUP_FAILED,
-    INPUTCHANGE
+    SIGNUP_INPUT_CHANGE
 } from "actions/signup";
 
 const initialState = {
@@ -26,7 +26,7 @@ export default (state=initialState, action={}) => {
                 pause: true
             };
 
-        case INPUTCHANGE:
+        case SIGNUP_INPUT_CHANGE:
             let { change } = action;
             if (change.hasOwnProperty("email")) {
                 return {

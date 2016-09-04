@@ -1,7 +1,7 @@
 import {
     LOGIN_REQUEST,
     LOGIN_FAILED,
-    INPUTCHANGE
+    LOGIN_INPUT_CHANGE
 } from "actions/login";
 
 const initialState = {
@@ -26,7 +26,7 @@ export default (state=initialState, action={}) => {
                 pause: true
             };
 
-        case INPUTCHANGE:
+        case LOGIN_INPUT_CHANGE:
             let { change } = action;
             if (change.hasOwnProperty("email")) {
                 return {

@@ -4,16 +4,16 @@ import {
 } from "actions/user";
 
 const initialState = {
-    email: "",
+    isAuthenticated: false,
+    email: ""
 };
 
 export default (state=initialState, action={}) => {
     switch (action.type) {
         case USER_LOGIN:
-            console.log('user login', action);
-            return { ...state, email: action.user.email };
+            return { ...state, email: action.user.email , isAuthenticated: true };
         case USER_LOGOUT:
-            return {  email: "" }
+            return {  ...state, email: "", isAuthenticated: false };
         default: return state;
     }
 };

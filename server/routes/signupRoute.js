@@ -5,6 +5,12 @@ const bcrypt = require("bcryptjs");
 let router = express.Router();
 const signupValidation = require("../validations/signup");
 
+router.get("/usuarios", (req, res) => {
+    User.fetchAll().then(users => res.status(200).json({
+        users: users
+    }));
+});
+
 router.post("/", (req, res) => {
     // Validations
     const { errors, isValid } = signupValidation(req.body);

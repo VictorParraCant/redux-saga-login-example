@@ -39,7 +39,7 @@ const mapStateToProps = ({ login }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    inputChange: (change) => dispatch(actions.inputChange(change)),
+    inputChange: (change) => dispatch(actions.loginInputChange(change)),
     loginRequest: (loginData) => {
         // Front Validation
         let newErrors = {};

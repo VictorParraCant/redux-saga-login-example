@@ -1,6 +1,6 @@
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_FAILED = "LOGIN_FAILED";
-export const INPUTCHANGE = "INPUTCHANGE";
+export const LOGIN_INPUT_CHANGE = "LOGIN_INPUT_CHANGE";
 
 export const loginRequest = (loginData) => ({
     type: LOGIN_REQUEST,
@@ -12,7 +12,7 @@ export const loginFailed = (errors) => ({
     errors
 });
 
-export const inputChange = (change) => ({
-    type: INPUTCHANGE,
+export const loginInputChange = (change) => ({
+    type: LOGIN_INPUT_CHANGE,
     change
 });

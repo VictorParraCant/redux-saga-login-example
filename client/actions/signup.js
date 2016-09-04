@@ -1,6 +1,6 @@
 export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
 export const SIGNUP_FAILED = "SIGNUP_FAILED";
-export const INPUTCHANGE = "INPUTCHANGE";
+export const SIGNUP_INPUT_CHANGE = "SIGNUP_INPUT_CHANGE";
 
 export const signupRequest = (signupData) => ({
     type: SIGNUP_REQUEST,
@@ -12,7 +12,7 @@ export const signupFailed = (errors) => ({
     errors
 });
 
-export const inputChange = (change) => ({
-    type: INPUTCHANGE,
+export const signupInputChange = (change) => ({
+    type: SIGNUP_INPUT_CHANGE,
     change
 });

@@ -39,7 +39,7 @@ const mapStateToProps = ({ signup }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    inputChange: (change) => dispatch(actions.inputChange(change)),
+    inputChange: (change) => dispatch(actions.signupInputChange(change)),
     signupRequest: (signupData) => {
         // Front Validation
         let newErrors = {};
